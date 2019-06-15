@@ -1,0 +1,363 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Assembly 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140330
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+<link href="../new.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+<link rel="stylesheet" type="text/css" href="style.css">
+    
+<style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: white; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Web Project</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="active"><a href="../index.html" accesskey="1" title="">Homepage</a></li>
+				<li><a href="../RandomSelector/RandomSelector.html" accesskey="2" title="">RandomSelector</a></li>
+				<li><a href="../Club/Club.html" accesskey="3" title="">Club</a></li>
+				<li><a href="#" accesskey="4" title="">Simple Game</a></li>
+				<li><a href="../MindTest/MindTest.html" accesskey="5" title="">MindTest</a></li>
+                <li><a href="../YoutubePlayer/YoutubePlayer.html" accesskey="6" title="">Youtube API</a></li>
+                <li><a href="../aboutme/aboutme.html" accesskey="7" title="">About me</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<canvas id="myCanvas" class="can" width= "1000px"
+    height= "800px"></canvas>
+    <div class="ml46">
+        <h1 class="ml4">
+    <span class="letters letters-1">3</span>
+    <span class="letters letters-2">2</span>
+    <span class="letters letters-3">1</span>
+    <span class="letters letters-4">Ready</span>
+    <span class="letters letters-5">Go!</span>
+        </h1>
+    </div>
+    
+    <h1 class="gameover" id="end">
+    <span class="over el-1">G</span>
+    <span class="over el-2">A</span>
+    <span class="over el-3">M</span>
+    <span class="over el-4">E</span>
+    <span class="over el-5">O</span>
+    <span class="over el-6">V</span>
+    <span class="over el-7">E</span>
+    <span class="over el-8">R</span>
+    <span class="over el-9">!</span>
+    </h1>
+    
+    <button id="button" class="play">PlAY</button>
+        <img src="background.jpg" width="100%" height="100%">
+<script src="/anime.min.js"></script>
+    <script>
+      
+function the_end(){
+    
+      document.getElementById("end").setAttribute("style", "opacity:1 ");  
+      anime({
+          targets:'.over',
+          translateY:-100,
+          delay:anime.stagger(200),
+          direction:'alternate',
+          loop:true
+      });
+}
+        
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+
+var img = new Image();
+img.src = "bird1.png";
+
+
+
+
+var sparrowHeight = 120;
+var sparrowWidth = 100;
+var sparrowX = canvas.width / 2 - 50;
+var rightPressed = false;
+var leftPressed = false;
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function keyDownHandler(e) {
+    if (e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if (e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if (relativeX > sparrowWidth && relativeX < canvas.width) {
+        sparrowX = relativeX - sparrowWidth ;
+    }
+}
+
+function drawbird1() {
+    ctx.drawImage(img, 470, 273, 121, 153, sparrowX, canvas.height - 120, 100, 120);
+}
+
+var Second=0;
+function drawTime() {
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "#000000";
+    ctx.fillText("TIME:"+Second+" s ", 8, 40);
+}
+
+
+function ball() {
+    var ballRadius = 30;
+    var x = Math.floor(Math.random() * (canvas.width - ballRadius * 2)) + ballRadius;
+    var y = ballRadius;
+    var dx = 5;
+    var dy = -3;
+
+    var x2 = Math.floor(Math.random() * (canvas.width - 60 * 2)) + 60;
+    var y2 = 60;
+    var dx2 = -0.003;
+    var dy2 = 0.0018;
+    
+    var x3 = Math.floor(Math.random() * (canvas.width - 60 * 2)) + 60;
+    var y3 = 20;
+    var dx3 = -2;
+    var dy3 = 5;
+
+    function drawBall1() {
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fillStyle = "#00db00";
+        ctx.fill();
+        ctx.closePath();
+        if (Math.sqrt(Math.pow(Math.abs(x-sparrowX-50),2)+Math.pow(Math.abs(canvas.height-sparrowHeight/2-y),2))<=70) {
+            clearInterval(myVar);
+            the_end();
+
+        }
+    }
+
+    function drawBall2() {
+        ctx.beginPath();
+        ctx.arc(x2, y2, 60, 0, Math.PI * 2);
+        ctx.fillStyle = "#dd0000";
+        ctx.fill();
+        ctx.closePath();
+        if (Math.sqrt(Math.pow(Math.abs(x2-sparrowX-50),2)+Math.pow(Math.abs(canvas.height-sparrowHeight/2-y2),2))<=100) {
+            clearInterval(myVar);
+            the_end();
+
+        }
+    }
+    
+    
+    function drawBall3() {
+        ctx.beginPath();
+        ctx.arc(x3, y3, 20, 0, Math.PI * 2);
+        ctx.fillStyle = "#FF9D00";
+        ctx.fill();
+        ctx.closePath();
+        if (Math.sqrt(Math.pow(Math.abs(x3-sparrowX-50),2)+Math.pow(Math.abs(canvas.height-sparrowHeight/2-y3),2))<=60) {
+            clearInterval(myVar);
+            the_end();
+
+        }
+    }
+var countTime=0;
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawbird1();
+        drawBall1();
+        drawBall2();
+        drawBall3();
+        drawTime();
+        if(countTime<100){
+            countTime++;
+        }else{
+            Second++;
+            countTime=0;
+        }
+            
+        
+
+        if (rightPressed && sparrowX < canvas.width - sparrowWidth) {
+            sparrowX += 7;
+        } else if (leftPressed && sparrowX > 0) {
+            sparrowX -= 7;
+        }
+
+        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+            dx = -dx;
+            //clearInterval(myVar);
+        }
+
+        if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+            dy = -dy;
+            //clearInterval(myVar);
+        }
+        x += dx;
+        y += dy;
+
+        if (x2 + dx2 > canvas.width - 60 || x2 + dx2 < 60) {
+            dx2 = -dx2;
+        } else if (dx2 > 0 && dx2 < 20) {
+            dx2 += 0.003;
+        } else if (dx2 < 0 && dx2 > -20) {
+            dx2 -= 0.003;
+        }
+
+        if (y2 + dy2 > canvas.height - 60 || y2 + dy2 < 60) {
+            dy2 = -dy2;
+        } else if (dy2 > 0 && dy2 < 12) {
+            dy2 += 0.0018;
+        } else if (dy2 < 0 && dy2 > -12) {
+            dy2 -= 0.0018;
+        }
+        x2 += dx2;
+        y2 += dy2;
+        
+        if (x3 + dx3 > canvas.width - 20 || x3 + dx3 < 20) {
+            dx3 = -dx3;
+            dy3=Math.random()*6-Math.random()*12;
+            //clearInterval(myVar);
+        }
+
+        if (y3 + dy3 > canvas.height - 20 || y3 + dy3 < 20) {
+            dy3 = -dy3;
+            dx3=Math.random()*2-Math.random()*4;
+            //clearInterval(myVar);
+        }
+        x3 += dx3;
+        y3 += dy3;
+    }
+    myVar = setInterval(draw, 10);
+}
+
+
+function hidebutton_and_animation() {
+
+    document.getElementById("button").setAttribute("style", "display:none");
+    document.getElementById("myCanvas").setAttribute("style", "opacity:1 ");
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '.ml4 .letters-1',
+            opacity: [0, 1],
+            scale: [0.2, 1],
+            duration: 800
+        }).add({
+            targets: '.ml4 .letters-1',
+            opacity: 0,
+            scale: 3,
+            duration: 600,
+            easing: "easeInExpo",
+            delay: 500
+        }).add({
+            targets: '.ml4 .letters-2',
+            opacity: [0, 1],
+            scale: [0.2, 1],
+            duration: 800
+        }).add({
+            targets: '.ml4 .letters-2',
+            opacity: 0,
+            scale: 3,
+            duration: 600,
+            easing: "easeInExpo",
+            delay: 500
+        }).add({
+            targets: '.ml4 .letters-3',
+            opacity: [0, 1],
+            scale: [0.2, 1],
+            duration: 800
+        }).add({
+            targets: '.ml4 .letters-3',
+            opacity: 0,
+            scale: 3,
+            duration: 600,
+            easing: "easeInExpo",
+            delay: 500
+        }).add({
+            targets: '.ml4 .letters-4',
+            opacity: [0, 1],
+            scale: [0.2, 1],
+            duration: 800
+        }).add({
+            targets: '.ml4 .letters-4',
+            opacity: 0,
+            scale: 3,
+            duration: 600,
+            easing: "easeInExpo",
+            delay: 500
+        }).add({
+            targets: '.ml4 .letters-5',
+            opacity: [0, 1],
+            scale: [0.2, 1],
+            duration: 800
+        }).add({
+            targets: '.ml4 .letters-5',
+            opacity: 0,
+            scale: 3,
+            duration: 600,
+            easing: "easeInExpo",
+            delay: 500
+        }).add({
+            targets: '.ml4',
+            opacity: 0,
+            duration: 500,
+            delay: 500
+        });
+
+    setTimeout(ball, 10500);
+}
+
+document.getElementById("button").onclick = hidebutton_and_animation;
+        
+
+        </script>
+    </div>
+</body>
+</html>

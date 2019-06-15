@@ -1,0 +1,10 @@
+.pos{
+    position: relative;
+    width: 800px;
+    height: 400px;
+    left: 50%;
+    margin-left: -200px;
+    font-size: 40px;
+    
+}
+

@@ -1,0 +1,10 @@
+body{
+    text-align: center;
+}
+.op{
+    width: 400px;
+    height: 200px;
+   left: 50%;
+    position: relative;
+   margin-left: -200px;
+}

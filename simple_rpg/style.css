@@ -1,0 +1,83 @@
+.ml4 {
+  position: relative;
+  font-weight: 900;
+  font-size: 4.5em;
+}
+.ml46 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 600px;
+  margin-left:-50px;
+}
+.ml4 .letters {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0.3em;
+  right: 0;
+  opacity: 0; 
+  color: black;
+}
+.el-2{
+    left: 90px;
+}
+.el-3{
+    left: 180px;
+}
+.el-4{
+    left: 290px;
+}
+.el-5{
+    left: 460px;
+}
+.el-6{
+    left: 540px;
+}
+.el-7{
+    left: 620px;
+}
+.el-8{
+    left: 700px;
+}
+.el-9{
+    left: 790px;
+}
+.over{
+    position: absolute;
+}
+.gameover{
+    position: absolute;
+    width: 800px;
+    height: 150px;
+    font-weight: bold;
+    font-size: 7em;
+    left: 50%;
+    top: 600px;
+    margin-left:-400px;
+    color: black;
+    opacity: 0;
+}
+.play{
+    position: absolute;
+    left: 50%;
+    top: 900px;
+    display: block;
+    margin: 0 0 0 -1px;
+    padding: 5px 10px;
+    font-size: 30px;
+    text-transform: uppercase;
+    border: 1px solid currentcolor;
+    background-color: transparent;
+    color: blue;
+    margin-left:-60px;
+}
+.can{
+    position: absolute;
+    opacity: 0;
+    border: 1px solid blue;
+    left: 50%;
+    margin-left:-500px;
+    border: 0px; 
+}
